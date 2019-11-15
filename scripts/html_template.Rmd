@@ -1,0 +1,74 @@
+---
+title: "R Markdown Workshop"
+subtitle: "Reproducible Reports"
+author: "Emi Tanaka"
+date: "19th November 2019"
+output: 
+  html_document: 
+    theme: default
+---
+
+The following are texts from Xie (2013) Dynamic Graphics and Reporting for Statistics. *PhD Thesis*.
+
+# Dynamic reporting
+
+
+
+Statistics as a scientific discipline has a dynamic nature, which can be observed in
+many statistical algorithms and theories as well as in data analysis. For example, asymptotic
+theories in statistics are inherently dynamic: they describe how a statistic or an
+estimator behaves as the sample size increases. Data analysis is almost never a static
+process. Instead, it is an iterative process involving cleaning, describing, modeling, and
+re-cleaning the data. Reports may end up being re-written due to changes in the data
+and analysis.
+
+
+A dynamic document is a mixture of normal
+text and program code; when we compile the document, the code is executed and turned
+into results. In the end, the results from computing and the original text are combined
+to form a report.
+
+# Literate Programming
+
+Statistical reporting is often the last step of data analysis, and traditionally it is separated
+from the computing, i.e., we finish all the computations and collect the results
+before we write the report. This is not only more  **demanding in terms of manual work, but also error-prone**. The paradigm of literate programming (Knuth, 1984) was brought
+forward in the 1980s to write software and documentation, and later it was incorporated
+into the R language as the well-known tool named Sweave (Leisch, 2002) for writing
+statistical reports. However, Sweave is not a complete implementation of literate programming,
+as pointed out by Schulte et al. (2012), and it lacks many useful features in
+statistical reporting such as caching and full integration with the capabilities of R graphics.
+Literate programming is often related to reproducible research, because the results
+are generated directly from computer code and it is easy to re-run the code to get the
+same results. 
+
+# Animation 
+
+Animations can add insight and interest to traditional static approaches to teaching
+statistics and reporting, making statistics a more interesting and appealing subject.
+
+Traditional static printed statistical reports have severe limitations, for conveying results
+with some degree of complexity to an audience that is not trained to understand
+the statistical ideas. Here, an active animated way to present results can help greatly. The
+human visual cortex is arguably the most powerful computing system to which we have
+access. Visualization puts information in a form that uses the power of this computing
+system. By virtue of our visual system, we may be able to quickly understand a complicated
+method or result, or at least a simplified case. Wender and Muehlboeck (2003)
+showed the advantages of animations in teaching statistical topics like least squares and
+type I & II errors. Velleman and Moore (1996) discussed a set of animation ideas that
+can be effective for a student to learn concepts actively. Animation can be helpful only
+if it is used appropriately; Fisher (2010) mentioned several successful applications of animations
+such as GapMinder (Rosling and Johansson, 2009), but also argued animation
+could be very bad when used poorly – it is usually good for presentation but not for
+exploration.
+
+```{r example-animation, fig.show='animate', fig.width=6, fig.height=4, cache=FALSE, interval=0.5, aniopts="controls"}
+library(animation)
+conf.int(0.9, main = "Demonstration of Confidence Intervals")
+```
+
+```{r example-animation2, fig.show='animate', fig.width=6, fig.height=6, cache=FALSE, interval=0.2, aniopts="controls,loop"}
+for (i in 1:50) {
+    plot(x=i/10, y=i/10, xlim=c(0,5), ylim=c(0,5), pch=20, col="red", cex=5)
+}
+```

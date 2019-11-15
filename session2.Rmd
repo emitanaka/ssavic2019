@@ -1,0 +1,767 @@
+---
+title: "R Markdown Workshop"
+subtitle: "Reproducible Reports"
+author: "Emi Tanaka"
+email: "dr.emi.tanaka@gmail.com"
+date: "19th Nov 2019 @ SSA Vic | Melbourne, Australia"
+length: "60 minutes"
+titleslide_bgimg: "images/bg1.jpg"
+color_theme: "yellow"
+pdflink: "session2.pdf"
+output:
+  xaringan::moon_reader:
+    css:
+      - ninjutsu 
+      - "assets/animate.css"
+      - "assets/cssgrid.css"
+      - "assets/fira-code.css"
+      - "assets/boxes.css"
+      - "assets/image_modal.css"
+      - "assets/custom.css"
+    self_contained: false 
+    seal: false 
+    chakra: 'libs/remark-latest.min.js'
+    beforeInit: "assets/custom.js"
+    lib_dir: libs
+    includes:
+      in_header: "assets/custom.html"
+      # before_body: 
+      after_body: 
+       - "assets/remarkjs_extended.html"
+       - "assets/image_modal.js"
+      # includes
+    mathjax: "assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    nature:
+      highlightStyle: github 
+      highlightLanguage: r 
+      highlightLines: true
+      highlightSpans: false 
+      countIncrementalSlides: false
+      slideNumberFormat: '%current%/%total%'
+      navigation:
+        scroll: false 
+        touch: true
+        click: false
+      ratio: '16:9'
+---
+
+```{r external, child="scripts/setup.Rmd", include=FALSE}
+```
+```{r titleslide, child="scripts/titleslide.Rmd"}
+```
+
+---
+
+class: center middle
+
+
+.font_large[`r emo::ji("search")` Open and inspect the file]
+
+.font_large[`demo-header.Rmd`]
+
+---
+
+# Cross Reference
+
+
+::: grid 
+
+::: item 
+
+* When you make a header via Rmd
+```markdown
+# Some Header
+```
+ an .red[id is created automatically].
+* The id is created by replacing .blue[space with `-`] and making it .blue[all lower case].
+* Now you can link to this header by `[some text](#some-header)`.
+* Cross references work for both pdf and html outputs.
+
+::: 
+
+::: item 
+
+<center>
+<iframe src="exercises/demo-header.html" width = "90%", height = "500px"></iframe>
+</center>
+
+:::
+
+:::
+
+
+---
+
+
+# Direct Reference for `html`
+
+<br>
+
+::: paddings
+
+* For `html` output, you can also give a link directly to the relevant section
+* E.g. open `demo-header.html` in a web browser
+* Append say `#chicken-data` to the url. It should look like 
+.center[
+`demo-header.html#chicken-data`
+]
+* It should have taken you to straight to the corresponding header `r emo::ji("exercise")`
+
+:::
+
+---
+
+
+# User-defined id
+
+
+<br>
+
+::: paddings 
+
+* You can define your own id by appending `{#your-id}`.
+
+```markdown
+# Some header {#header1}
+```
+* Now you can link to this header with the id `header1`.
+* Note there should be no space in the id name!
+
+::: 
+
+---
+
+
+class: center middle
+
+
+.font_large[`r emo::ji("search")` Open and inspect the file]
+
+.font_large[`demo.bib`]
+
+
+
+---
+
+class: font_smaller
+
+# Bibliography
+
+* BibTeX citation style format is used to store references in `.bib` files.
+* Remember that you can get most BibTeX citation for R packages `citation` function. (Scroll below to see the BibTeX citation).
+
+.scroll-350[
+```{r}
+citation("xaringan")
+```
+]
+
+---
+
+class: center middle
+
+
+.font_large[`r emo::ji("search")` Open, inspect and knit the file]
+
+.font_large[`demo-citation.Rmd`]
+
+---
+
+# Citations
+
+<br>
+
+::: paddings
+
+* You can include BibTeX by specifying the `bib` file at YAML as:
+
+```markdown
+bibliography: bibliography.bib
+```
+
+
+[@bibtex-key] <i class="fas fa-arrow-right"></i> (Author et al. 2019)
+
+or 
+
+@bibtex-key <i class="fas fa-arrow-right"></i> Author et al. 2019
+
+* See `demo-citation.Rmd`
+
+
+:::
+
+---
+
+class: font_small
+
+
+# Figure References
+
+::: paddings 
+
+* Support for figure references are included for output format type `bookdown::pdf_document2` for pdf or `bookdown::html_document2` for html.
+
+````markdown
+`r ''````{r plot1, fig.cap = "Caption"}
+ggplot(cars, aes(dist, speed)) + geom_point()
+```
+````
+
+* Above figure number can be referenced as .red[`\@ref(fig:plot1)`]
+
+* The reference label has the prefix `fig:` before the chunk label.
+
+
+
+
+:::
+
+---
+
+class: font_small
+
+
+# Table References
+
+::: paddings 
+
+* Support for table references are also included for output format type `bookdown::pdf_document2` for pdf or `bookdown::html_document2` for html.
+
+````markdown
+`r ''````{r table1}
+knitr::kable(cars, booktabs = TRUE, caption = "Caption")
+```
+````
+
+* Above table number can be referenced as .red[`\@ref(tab:table1)`]
+
+* The reference label has the prefix `tab:` before the chunk label.
+
+:::
+
+
+---
+
+class: font_small
+
+# Markdown for Captions
+
+::: paddings
+
+````markdown
+`r ''````{r plot1, fig.cap = "(ref:label)"}
+ggplot(cars, aes(dist, speed)) + geom_point()
+```
+````
+
+* Then the caption can be entered in a separate paragraph with empty lines above and below it
+
+```markdown
+
+(ref:label) This is the *caption* with **markdown**.
+
+```
+
+* You can subsitute `label` with another unique label composed of alphanumeric characters, :, -, or /
+* This caption supports markdown syntax
+* This is great for long captions
+* It also works for tables!
+
+
+:::
+
+
+---
+
+
+class: center middle
+
+
+.font_large[`r emo::ji("wrench")` Open and work through]
+
+.font_large[`challenge-08-references.Rmd`]
+
+`r countdown::countdown(5, font_size = "1em")`
+
+
+
+
+---
+
+class: font_small
+
+# Parametrized Report
+
+````markdown
+---
+title: "Parameterized Report"
+params:
+*  species: setosa 
+output: html_document
+---
+
+`r ''````{r, message = FALSE, fig.dim = c(3,2)}
+library(tidyverse)
+iris %>% 
+*  filter(Species==params$species) %>% 
+   ggplot(aes(Sepal.Length, Sepal.Width)) +
+   geom_point(aes(color=Species))
+```
+````
+
+::: {.output .pos top:60px; right:10px;}
+<img src = "images/parameterised-report-eg1.png" width = "550px"/>
+
+:::
+
+---
+
+class: font_smaller
+
+# Knit with Parameters
+
+::: grid
+::: item 
+
+```markdown
+---
+title: "Parameterized Report"
+params:
+  species: 
+    label: "Species"
+    value: setosa
+    input: select
+    choices: [setosa, versicolor, virginica]
+  color: red
+  max:
+    label: "Maximum Sepal Width"
+    value: 4
+    input: slider
+    min: 4
+    max: 5
+    step: 0.1
+output: html_document
+---
+```
+
+:::
+
+::: item 
+
+<img src = "images/knit-with-params.png" width = "250px" style="border: solid 3px black;"/>
+
+````markdown
+`r ''````{r, message = params$printmsg}
+library(tidyverse)
+iris %>% 
+  filter(Species==params$species) %>% 
+  filter(Sepal.Width < params$max) %>% 
+  ggplot(aes(Sepal.Length, Sepal.Width)) +
+  geom_point(color = params$color) + 
+  labs(title = params$species)
+```
+````
+
+
+
+:::
+
+:::
+
+---
+
+class: font_smaller
+
+# Shiny Report Generator
+::: grid
+::: item 
+```markdown
+---
+title: "Parameterized Report"
+params:
+  species: 
+    label: "Species"
+    value: setosa
+    input: select
+    choices: [setosa, versicolor, virginica]
+  color: red
+  max:
+    label: "Maximum Sepal Width"
+    value: 5
+    input: slider
+    min: 4
+    max: 5
+    step: 0.05
+output: html_document
+---
+```
+
+:::
+
+::: item 
+
+<Br>
+
+<img src = "images/shiny-params.png" width = "100%" style="border: solid 3px black;"/>
+
+:::
+
+:::
+
+---
+
+class: center middle
+
+
+.font_large[`r emo::ji("wrench")` Open and work through]
+
+.font_large[`challenge-09-params.Rmd`]
+
+`r countdown::countdown(5, font_size = "1em")`
+
+---
+
+class: font_smaller
+
+# R Markdown via Command Line
+
+::: grid 
+
+::: item 
+
+`demo-render.Rmd`
+
+````markdown
+---
+title: "Parameterized Report"
+params:
+*  species: setosa
+output: html_document
+---
+
+`r ''````{r, message = FALSE, fig.dim = c(3,2)}
+library(tidyverse)
+iris %>% 
+*  filter(Species==params$species) %>% 
+   ggplot(aes(Sepal.Length, Sepal.Width)) +
+   geom_point(aes(color=Species))
+```
+````
+
+:::
+
+::: item 
+
+You can knit this file via R command by<br> using the `render` function:
+
+```{r, eval = FALSE}
+library(rmarkdown)
+render("demo-render.Rmd")
+```
+
+<br>
+
+You can overwrite the YAML values<br>  by supplying arguments to `render`:
+
+```{r, eval = FALSE}
+library(rmarkdown)
+render("demo-render.Rmd", 
+       output_format = "pdf_document",
+       params = list(species = "virginica"))
+```
+
+:::
+
+:::
+
+---
+
+class: center middle
+
+
+.font_large[`r emo::ji("wrench")` Open and work through]
+
+.font_large[`challenge-10-letters.Rmd`]
+
+`r countdown::countdown(10, font_size = "1em")`
+
+
+---
+
+# Themes: `html_document`  
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <div id="caption"></div>
+  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+  <iframe class="modal-content" id="img01"></iframe><br>
+</div>
+
+You can change the look of the html document by specifying themes:
+::: grid 
+
+::: item 
+
+* `default` <img class="modalImg" alt="default"/> 
+* `cerulean` <img class="modalImg" alt="cerulean"/> 
+* `journal`  <img class="modalImg" alt="journal"/> 
+* `flatly` <img class="modalImg" alt="flatly"/> 
+* `darkly` <img class="modalImg" alt="darkly"/> 
+* `readable` <img class="modalImg" alt="readable"/> 
+* `spacelab` <img class="modalImg" alt="spacelab"/> 
+* `united` <img class="modalImg" alt="united"/> 
+
+:::
+
+::: item 
+
+
+* `cosmo` <img class="modalImg" alt="cosmo"/> 
+* `lumen` <img class="modalImg" alt="lumen"/> 
+* `paper` <img class="modalImg" alt="paper"/> 
+* `sandstone` <img class="modalImg" alt="sandstone"/> 
+* `simplex` <img class="modalImg" alt="simplex"/> 
+* `yeti` <img class="modalImg" alt="yeti"/> 
+* `NULL`  <img class="modalImg" alt="null"/> 
+
+:::
+
+::: item 
+
+
+```markdown
+output: 
+  html_document:
+    theme: cerulean
+```
+
+These [bootswatch](https://bootswatch.com/) themes attach the whole bootstrap library which makes your html file size larger.
+
+:::
+
+:::
+
+---
+
+# `prettydoc` 
+
+<!-- The Modal -->
+<div id="myModal2" class="modal">
+  <div id="caption2"></div>
+  <span class="close" onclick="document.getElementById('myModal2').style.display='none'">&times;</span>
+  <iframe class="modal-content" id="img02"></iframe><br>
+</div>
+
+::: grid 
+
+::: item 
+
+`prettydoc` `r emo::ji('package')` is a community contributed `theme` that is light-weight:
+
+* `cayman` <img class="modalImg2" alt="cayman"/> 
+* `tactile` <img class="modalImg2" alt="tactile"/> 
+* `architect` <img class="modalImg2" alt="architect"/> 
+* `leonids` <img class="modalImg2" alt="leonids"/> 
+* `hpstr` <img class="modalImg2" alt="hpstr"/> 
+
+
+
+:::
+
+::: item 
+
+
+
+```markdown
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+```
+
+See more about it below:
+
+https://prettydoc.statr.me/
+
+:::
+
+:::
+
+
+
+
+
+---
+
+# `rmdformats`
+
+<!-- The Modal -->
+<div id="myModal3" class="modal">
+  <div id="caption3"></div>
+  <span class="close" onclick="document.getElementById('myModal3').style.display='none'">&times;</span>
+  <iframe class="modal-content" id="img03"></iframe><br>
+</div>
+
+
+::: grid 
+
+::: item 
+
+`rmdformats` `r emo::ji('package')` contains four built-in `html` formats: 
+
+
+* `readthedown` <img class="modalImg3" alt="readthedown"/> 
+* `html_clean` <img class="modalImg3" alt="html_clean"/> 
+* `html_docco` <img class="modalImg3" alt="html_docco"/> 
+* `material` <img class="modalImg3" alt="material"/> 
+
+:::
+
+::: item 
+
+You can use these formats by simply specifying the output in YAML as below:
+
+
+```markdown
+output: rmdformats::readthedown
+```
+
+See more about it below:
+
+https://github.com/juba/rmdformats
+
+:::
+
+:::
+
+---
+
+# `rticles` - LaTeX Journal Article Templates
+
+<!-- The Modal -->
+<div id="myModal4" class="modal">
+  <div id="caption4"></div>
+  <span class="close" onclick="document.getElementById('myModal4').style.display='none'">&times;</span>
+  <iframe class="modal-content" id="img04"></iframe><br>
+</div>
+::: grid
+::: item 
+* `acm` <img class='modalPdf' alt='acm_article'/>
+* `acs` <img class='modalPdf' alt='acs_article'/>
+* `aea` <img class='modalPdf' alt='aea_article'/>
+* `agu` <img class='modalPdf' alt='agu_article'/>
+* `amq` <img class='modalPdf' alt='amq_article'/>
+* `ams` <img class='modalPdf' alt='ams_article'/>
+* `asa` <img class='modalPdf' alt='asa_article'/>
+* `biometrics` <img class='modalPdf' alt='biometrics_article'/>
+* `copernicus` <img class='modalPdf' alt='copernicus_article'/>
+
+
+:::
+
+::: item 
+
+* `elsevier` <img class='modalPdf' alt='elsevier_article'/>
+* `frontiers` <img class='modalPdf' alt='frontiers_article'/>
+* `ieee` <img class='modalPdf' alt='ieee_article'/>
+* `jss` <img class='modalPdf' alt='jss_article'/>
+* `mdpi` <img class='modalPdf' alt='mdpi_article'/>
+* `mnras` <img class='modalPdf' alt='mnras_article'/>
+* `peerj` <img class='modalPdf' alt='peerj_article'/>
+* `plos` <img class='modalPdf' alt='plos_article'/>
+
+:::
+
+::: item 
+* `pnas` <img class='modalPdf' alt='pnas_article'/>
+* `rjournal` <img class='modalPdf' alt='rjournal_article'/>
+* `rsos` <img class='modalPdf' alt='rsos_article'/>
+* `rss` <img class='modalPdf' alt='rss_article'/>
+* `sage` <img class='modalPdf' alt='sage_article'/>
+* `sim` <img class='modalPdf' alt='sim_article'/>
+* `springer` <img class='modalPdf' alt='springer_article'/>
+* `tf` <img class='modalPdf' alt='tf_article'/>
+
+::::
+
+::::
+
+
+::: {.bottom_abs .width100 .bg-indigo .white padding-left:10px;}
+Go to RStudio > File > New File > R Markdown ... > From Template
+:::
+
+
+---
+
+
+# External Files in Templating
+
+::: grid
+
+::: item 
+
+* When using `rticles`, each journal usually require external files (e.g. `cls` or image files).
+* These external components are stored within the package.
+* So use `draft` instead of `render`! 
+
+::: 
+
+::: item bg-gray
+
+**GUI**
+
+* `RStudio > File > New File > R Markdown ... > From Template`
+
+**Command line**
+
+```{r, eval = FALSE}
+rmarkdown::draft("file.Rmd", 
+ template = "biometrics_article",
+ package = "rticles")
+```
+
+
+
+:::
+
+:::
+
+---
+
+# Making your own R Markdown template 
+
+::: paddings
+
+* You need to make an R package first!<br>
+Go to RStudio > New Project > New Directory > R Package or `usethis::create_package()`
+
+
+* When you are in your R package project,
+
+```{r, eval = FALSE}
+usethis::use_rmarkdown_template("<Name>")
+```
+
+* Modify the `skeleton/skeleton.Rmd` to how you want and add all external files to the `skeleton` folder.
+* Install your package.
+* `r emo::ji("tada")` And now find it at RStudio > File > New File > R Markdown > From Template.
+
+:::
+
+---
+
+class: center middle
+
+
+.font_large[`r emo::ji("wrench")` Create your own <br>R Markdown Template Package!]
+
+`r countdown::countdown(15, font_size = "1em")`
+
+
+
+---
+
+```{r endslide, child="scripts/endslide.Rmd"}
+```
+
