@@ -21,9 +21,9 @@ Find the instructions that was sent in email [here](instructions.pdf).
 
 ## Slides 
 
-* [Session 1: R Markdown Basics](session1.html)
-* [Session 2: Reproducible Reports](session2.html)
-* [Session 3: Pretty Presentations](session3.html)
+* [Session 1: R Markdown Basics](session1.html) <a href="session1.pdf" style = "background-color: #015F85; padding-left: 3px; padding-right: 3px; font-size: 6pt;color: white; border: solid 3px black;">PDF</a>
+* [Session 2: Reproducible Reports](session2.html) <a href="session2.pdf" style = "background-color: #015F85; padding-left: 3px; padding-right: 3px; font-size: 6pt;color: white; border: solid 3px black;">PDF</a>
+* [Session 3: Pretty Presentations](session3.html) <a href="session3.pdf" style = "background-color: #015F85; padding-left: 3px; padding-right: 3px; font-size: 6pt;color: white; border: solid 3px black;">PDF</a>
 
 All source materials can be found at https://github.com/emitanaka/ssavic2019.
 
