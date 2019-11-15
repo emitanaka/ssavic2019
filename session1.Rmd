@@ -274,7 +274,7 @@ Find slides at<br><Br>
 
 
 .center[
-.blue[<i class="fas fa-link"></i>  https://emitanaka.org/ssavic2019]
+.blue[<i class="fas fa-link"></i>  https://rmd-ssavic-2019.netlify.com/]
 ]
 
 <br>
