@@ -1,16 +1,17 @@
 ---
-title: "Title"
+title: "R Markdown Workshop"
 author: "Emi Tanaka"
 email: "dr.emi.tanaka@gmail.com"
-date: "DD MM YYYY | Event | City, Country"
+date: "19th Nov 2019 | SSA Vic Workshop | Melbourne, Australia"
 params: 
-  wifi: FILL
-  wifi_password: FILL
-  cloud_link: bit.ly/xxx
+  wifi: "rskillsworkshop"
+  wifi_password: "$Gt1o6"
+  cloud_link: "http://bit.ly/rmd-ssavic-2019"
+  slide_link: "https://rmd-ssavic-2019.netlify.com"
 output:
   xaringan::moon_reader:
     css: 
-      - ninjutsu, 
+      - ninjutsu
       - "assets/animate.css"
       - "assets/cssgrid.css"
       - "assets/custom.css"
@@ -47,7 +48,7 @@ background-size: cover
 class: hide-slide-number
 
 
-:::::::::: { .grid grid: 68% 32% / 1fr;} 
+:::::::::: { .grid grid: 60% 40% / 1fr;} 
 ::: item center
 
 <br>
@@ -64,7 +65,10 @@ class: hide-slide-number
 <i class="fas fa-link"></i> 
 `r params$cloud_link`
 
-WIFI <i class="fas fa-wifi"></i> `r params$wifi` <i class="fas fa-key"></i> `r params$wifi_password`
+<i class="fas fa-book-open"></i>
+`r params$slide_link`
+
+WIFI Visitor <i class="fas fa-wifi"></i> `r params$wifi` <i class="fas fa-key"></i> `r params$wifi_password`
 
 `r rmarkdown::metadata$date`
 
@@ -88,6 +92,8 @@ class: center middle
 
 # Wireless Internet
 
+**Instructions**: https://wireless.unimelb.edu.au/visitor.html
+
 ::: grid 
 
 ::: item 
@@ -96,7 +102,10 @@ class: center middle
 
 Wifi username
 
-``r params::wifi``
+``r params$wifi``
+
+
+
 
 :::
 

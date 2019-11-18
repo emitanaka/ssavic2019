@@ -36,6 +36,7 @@
   border: double 5px #0081c7;
   background-color: #abdff7;
   padding: 20px;
+  z-index: 350;
 }
 
 .challenge {

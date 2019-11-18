@@ -263,7 +263,7 @@ ggplot(cars, aes(dist, speed)) + geom_point()
 
 ```
 
-* You can subsitute `label` with another unique label composed of alphanumeric characters, :, -, or /
+* You can substitute `label` with another unique label composed of alphanumeric characters, :, -, or /
 * This caption supports markdown syntax
 * This is great for long captions
 * It also works for tables!

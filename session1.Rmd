@@ -802,22 +802,25 @@ class: font_small
 ```markdown
 ---
 title: >
-  this is a\ 
-  single line\
+  this is a  
+  **single line**
   
 abstract: |
-  this value spans\
-  many lines and\
-  appears as it is\
+  this value spans  
+  *many lines* and  
+  appears as it is  
   
 output: pdf_document
 ---
 
 ```
 
-::: {.pos top:80px; right:20px;}
-output<br>
-<img src = "images/minimal-pdf-output.png" width = "800px" style="border: solid 3px black;"/>
+Note that there are **two spaces** after each line in the above YAML values. 
+This is necessary to create a new line for markdown.
+
+::: {.output .pos top:80px; right:20px;}
+
+<img src = "images/minimal-pdf-output.png" width = "500px"/>
 
 :::
 

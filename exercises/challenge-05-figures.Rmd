@@ -134,5 +134,5 @@ Now I
 
 While it seems a small thing, there's **_friction in my workflow_**. It's worth investing to make your workflow smoother even if it takes time to learn initially. In the long term, you have more time on more important matters.
 
-`r emo::ji("question")` **What tasks do you repea often or hinder productiveness in your work? Can you think of how to make your workflow smoother?**
+`r emo::ji("question")` **What tasks do you repeat often or hinder productiveness in your work? Can you think of how to make your workflow smoother?**
 
