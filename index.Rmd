@@ -16,7 +16,7 @@ code, pre {
 
 ## Getting started
 
-Find the instructions that was sent in email [here](instructions.pdf).
+Find the instructions that was sent before [here](instructions.pdf).
 
 
 ## Slides 
